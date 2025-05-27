@@ -723,7 +723,8 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const AlunoScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
-  email: 'email'
+  email: 'email',
+  password: 'password'
 } as const
 
 export type AlunoScalarFieldEnum = (typeof AlunoScalarFieldEnum)[keyof typeof AlunoScalarFieldEnum]
@@ -732,7 +733,8 @@ export type AlunoScalarFieldEnum = (typeof AlunoScalarFieldEnum)[keyof typeof Al
 export const ProfessorScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
-  email: 'email'
+  email: 'email',
+  password: 'password'
 } as const
 
 export type ProfessorScalarFieldEnum = (typeof ProfessorScalarFieldEnum)[keyof typeof ProfessorScalarFieldEnum]
@@ -768,7 +770,8 @@ export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 export const AlunoOrderByRelevanceFieldEnum = {
   nome: 'nome',
-  email: 'email'
+  email: 'email',
+  password: 'password'
 } as const
 
 export type AlunoOrderByRelevanceFieldEnum = (typeof AlunoOrderByRelevanceFieldEnum)[keyof typeof AlunoOrderByRelevanceFieldEnum]
@@ -776,7 +779,8 @@ export type AlunoOrderByRelevanceFieldEnum = (typeof AlunoOrderByRelevanceFieldE
 
 export const ProfessorOrderByRelevanceFieldEnum = {
   nome: 'nome',
-  email: 'email'
+  email: 'email',
+  password: 'password'
 } as const
 
 export type ProfessorOrderByRelevanceFieldEnum = (typeof ProfessorOrderByRelevanceFieldEnum)[keyof typeof ProfessorOrderByRelevanceFieldEnum]

@@ -37,18 +37,21 @@ export type ProfessorMinAggregateOutputType = {
   id: number | null
   nome: string | null
   email: string | null
+  password: string | null
 }
 
 export type ProfessorMaxAggregateOutputType = {
   id: number | null
   nome: string | null
   email: string | null
+  password: string | null
 }
 
 export type ProfessorCountAggregateOutputType = {
   id: number
   nome: number
   email: number
+  password: number
   _all: number
 }
 
@@ -65,18 +68,21 @@ export type ProfessorMinAggregateInputType = {
   id?: true
   nome?: true
   email?: true
+  password?: true
 }
 
 export type ProfessorMaxAggregateInputType = {
   id?: true
   nome?: true
   email?: true
+  password?: true
 }
 
 export type ProfessorCountAggregateInputType = {
   id?: true
   nome?: true
   email?: true
+  password?: true
   _all?: true
 }
 
@@ -170,6 +176,7 @@ export type ProfessorGroupByOutputType = {
   id: number
   nome: string
   email: string
+  password: string
   _count: ProfessorCountAggregateOutputType | null
   _avg: ProfessorAvgAggregateOutputType | null
   _sum: ProfessorSumAggregateOutputType | null
@@ -199,6 +206,7 @@ export type ProfessorWhereInput = {
   id?: Prisma.IntFilter<"Professor"> | number
   nome?: Prisma.StringFilter<"Professor"> | string
   email?: Prisma.StringFilter<"Professor"> | string
+  password?: Prisma.StringFilter<"Professor"> | string
   notas?: Prisma.NotaListRelationFilter
   disciplinas?: Prisma.DisciplinaListRelationFilter
 }
@@ -207,6 +215,7 @@ export type ProfessorOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  password?: Prisma.SortOrder
   notas?: Prisma.NotaOrderByRelationAggregateInput
   disciplinas?: Prisma.DisciplinaOrderByRelationAggregateInput
   _relevance?: Prisma.ProfessorOrderByRelevanceInput
@@ -214,19 +223,21 @@ export type ProfessorOrderByWithRelationInput = {
 
 export type ProfessorWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  email?: string
   AND?: Prisma.ProfessorWhereInput | Prisma.ProfessorWhereInput[]
   OR?: Prisma.ProfessorWhereInput[]
   NOT?: Prisma.ProfessorWhereInput | Prisma.ProfessorWhereInput[]
   nome?: Prisma.StringFilter<"Professor"> | string
-  email?: Prisma.StringFilter<"Professor"> | string
+  password?: Prisma.StringFilter<"Professor"> | string
   notas?: Prisma.NotaListRelationFilter
   disciplinas?: Prisma.DisciplinaListRelationFilter
-}, "id">
+}, "id" | "email">
 
 export type ProfessorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  password?: Prisma.SortOrder
   _count?: Prisma.ProfessorCountOrderByAggregateInput
   _avg?: Prisma.ProfessorAvgOrderByAggregateInput
   _max?: Prisma.ProfessorMaxOrderByAggregateInput
@@ -241,11 +252,13 @@ export type ProfessorScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Professor"> | number
   nome?: Prisma.StringWithAggregatesFilter<"Professor"> | string
   email?: Prisma.StringWithAggregatesFilter<"Professor"> | string
+  password?: Prisma.StringWithAggregatesFilter<"Professor"> | string
 }
 
 export type ProfessorCreateInput = {
   nome: string
   email: string
+  password: string
   notas?: Prisma.NotaCreateNestedManyWithoutProfessorInput
   disciplinas?: Prisma.DisciplinaCreateNestedManyWithoutProfessorInput
 }
@@ -254,6 +267,7 @@ export type ProfessorUncheckedCreateInput = {
   id?: number
   nome: string
   email: string
+  password: string
   notas?: Prisma.NotaUncheckedCreateNestedManyWithoutProfessorInput
   disciplinas?: Prisma.DisciplinaUncheckedCreateNestedManyWithoutProfessorInput
 }
@@ -261,6 +275,7 @@ export type ProfessorUncheckedCreateInput = {
 export type ProfessorUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
   notas?: Prisma.NotaUpdateManyWithoutProfessorNestedInput
   disciplinas?: Prisma.DisciplinaUpdateManyWithoutProfessorNestedInput
 }
@@ -269,6 +284,7 @@ export type ProfessorUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
   notas?: Prisma.NotaUncheckedUpdateManyWithoutProfessorNestedInput
   disciplinas?: Prisma.DisciplinaUncheckedUpdateManyWithoutProfessorNestedInput
 }
@@ -277,17 +293,20 @@ export type ProfessorCreateManyInput = {
   id?: number
   nome: string
   email: string
+  password: string
 }
 
 export type ProfessorUpdateManyMutationInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProfessorUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProfessorOrderByRelevanceInput = {
@@ -300,6 +319,7 @@ export type ProfessorCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  password?: Prisma.SortOrder
 }
 
 export type ProfessorAvgOrderByAggregateInput = {
@@ -310,12 +330,14 @@ export type ProfessorMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  password?: Prisma.SortOrder
 }
 
 export type ProfessorMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  password?: Prisma.SortOrder
 }
 
 export type ProfessorSumOrderByAggregateInput = {
@@ -365,6 +387,7 @@ export type ProfessorUpdateOneRequiredWithoutNotasNestedInput = {
 export type ProfessorCreateWithoutDisciplinasInput = {
   nome: string
   email: string
+  password: string
   notas?: Prisma.NotaCreateNestedManyWithoutProfessorInput
 }
 
@@ -372,6 +395,7 @@ export type ProfessorUncheckedCreateWithoutDisciplinasInput = {
   id?: number
   nome: string
   email: string
+  password: string
   notas?: Prisma.NotaUncheckedCreateNestedManyWithoutProfessorInput
 }
 
@@ -394,6 +418,7 @@ export type ProfessorUpdateToOneWithWhereWithoutDisciplinasInput = {
 export type ProfessorUpdateWithoutDisciplinasInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
   notas?: Prisma.NotaUpdateManyWithoutProfessorNestedInput
 }
 
@@ -401,12 +426,14 @@ export type ProfessorUncheckedUpdateWithoutDisciplinasInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
   notas?: Prisma.NotaUncheckedUpdateManyWithoutProfessorNestedInput
 }
 
 export type ProfessorCreateWithoutNotasInput = {
   nome: string
   email: string
+  password: string
   disciplinas?: Prisma.DisciplinaCreateNestedManyWithoutProfessorInput
 }
 
@@ -414,6 +441,7 @@ export type ProfessorUncheckedCreateWithoutNotasInput = {
   id?: number
   nome: string
   email: string
+  password: string
   disciplinas?: Prisma.DisciplinaUncheckedCreateNestedManyWithoutProfessorInput
 }
 
@@ -436,6 +464,7 @@ export type ProfessorUpdateToOneWithWhereWithoutNotasInput = {
 export type ProfessorUpdateWithoutNotasInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
   disciplinas?: Prisma.DisciplinaUpdateManyWithoutProfessorNestedInput
 }
 
@@ -443,6 +472,7 @@ export type ProfessorUncheckedUpdateWithoutNotasInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
   disciplinas?: Prisma.DisciplinaUncheckedUpdateManyWithoutProfessorNestedInput
 }
 
@@ -490,6 +520,7 @@ export type ProfessorSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   id?: boolean
   nome?: boolean
   email?: boolean
+  password?: boolean
   notas?: boolean | Prisma.Professor$notasArgs<ExtArgs>
   disciplinas?: boolean | Prisma.Professor$disciplinasArgs<ExtArgs>
   _count?: boolean | Prisma.ProfessorCountOutputTypeDefaultArgs<ExtArgs>
@@ -501,9 +532,10 @@ export type ProfessorSelectScalar = {
   id?: boolean
   nome?: boolean
   email?: boolean
+  password?: boolean
 }
 
-export type ProfessorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "email", ExtArgs["result"]["professor"]>
+export type ProfessorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "email" | "password", ExtArgs["result"]["professor"]>
 export type ProfessorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   notas?: boolean | Prisma.Professor$notasArgs<ExtArgs>
   disciplinas?: boolean | Prisma.Professor$disciplinasArgs<ExtArgs>
@@ -520,6 +552,7 @@ export type $ProfessorPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     id: number
     nome: string
     email: string
+    password: string
   }, ExtArgs["result"]["professor"]>
   composites: {}
 }
@@ -894,6 +927,7 @@ export interface ProfessorFieldRefs {
   readonly id: Prisma.FieldRef<"Professor", 'Int'>
   readonly nome: Prisma.FieldRef<"Professor", 'String'>
   readonly email: Prisma.FieldRef<"Professor", 'String'>
+  readonly password: Prisma.FieldRef<"Professor", 'String'>
 }
     
 

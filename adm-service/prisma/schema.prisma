@@ -11,16 +11,18 @@ datasource db {
 model Aluno {
   id     Int    @id @default(autoincrement())
   nome   String
-  email  String
-  notas  Nota[]   // relação com Nota (1 aluno tem várias notas)
+  email  String      @unique
+  password String
+  notas  Nota[]  
 }
 
 model Professor {
   id          Int          @id @default(autoincrement())
   nome        String
-  email       String
-  notas       Nota[]       // professor tem várias notas
-  disciplinas Disciplina[] // professor tem várias disciplinas
+  email       String       @unique
+  password    String
+  notas       Nota[]       
+  disciplinas Disciplina[] 
 }
 
 model Disciplina {
@@ -28,7 +30,7 @@ model Disciplina {
   nome         String
   professor    Professor? @relation(fields: [professorId], references: [id])
   professorId  Int?
-  notas        Nota[]    // disciplina tem várias notas
+  notas        Nota[]    
 }
 
 model Nota {

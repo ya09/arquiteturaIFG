@@ -37,18 +37,21 @@ export type AlunoMinAggregateOutputType = {
   id: number | null
   nome: string | null
   email: string | null
+  password: string | null
 }
 
 export type AlunoMaxAggregateOutputType = {
   id: number | null
   nome: string | null
   email: string | null
+  password: string | null
 }
 
 export type AlunoCountAggregateOutputType = {
   id: number
   nome: number
   email: number
+  password: number
   _all: number
 }
 
@@ -65,18 +68,21 @@ export type AlunoMinAggregateInputType = {
   id?: true
   nome?: true
   email?: true
+  password?: true
 }
 
 export type AlunoMaxAggregateInputType = {
   id?: true
   nome?: true
   email?: true
+  password?: true
 }
 
 export type AlunoCountAggregateInputType = {
   id?: true
   nome?: true
   email?: true
+  password?: true
   _all?: true
 }
 
@@ -170,6 +176,7 @@ export type AlunoGroupByOutputType = {
   id: number
   nome: string
   email: string
+  password: string
   _count: AlunoCountAggregateOutputType | null
   _avg: AlunoAvgAggregateOutputType | null
   _sum: AlunoSumAggregateOutputType | null
@@ -199,6 +206,7 @@ export type AlunoWhereInput = {
   id?: Prisma.IntFilter<"Aluno"> | number
   nome?: Prisma.StringFilter<"Aluno"> | string
   email?: Prisma.StringFilter<"Aluno"> | string
+  password?: Prisma.StringFilter<"Aluno"> | string
   notas?: Prisma.NotaListRelationFilter
 }
 
@@ -206,24 +214,27 @@ export type AlunoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  password?: Prisma.SortOrder
   notas?: Prisma.NotaOrderByRelationAggregateInput
   _relevance?: Prisma.AlunoOrderByRelevanceInput
 }
 
 export type AlunoWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  email?: string
   AND?: Prisma.AlunoWhereInput | Prisma.AlunoWhereInput[]
   OR?: Prisma.AlunoWhereInput[]
   NOT?: Prisma.AlunoWhereInput | Prisma.AlunoWhereInput[]
   nome?: Prisma.StringFilter<"Aluno"> | string
-  email?: Prisma.StringFilter<"Aluno"> | string
+  password?: Prisma.StringFilter<"Aluno"> | string
   notas?: Prisma.NotaListRelationFilter
-}, "id">
+}, "id" | "email">
 
 export type AlunoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  password?: Prisma.SortOrder
   _count?: Prisma.AlunoCountOrderByAggregateInput
   _avg?: Prisma.AlunoAvgOrderByAggregateInput
   _max?: Prisma.AlunoMaxOrderByAggregateInput
@@ -238,11 +249,13 @@ export type AlunoScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Aluno"> | number
   nome?: Prisma.StringWithAggregatesFilter<"Aluno"> | string
   email?: Prisma.StringWithAggregatesFilter<"Aluno"> | string
+  password?: Prisma.StringWithAggregatesFilter<"Aluno"> | string
 }
 
 export type AlunoCreateInput = {
   nome: string
   email: string
+  password: string
   notas?: Prisma.NotaCreateNestedManyWithoutAlunoInput
 }
 
@@ -250,12 +263,14 @@ export type AlunoUncheckedCreateInput = {
   id?: number
   nome: string
   email: string
+  password: string
   notas?: Prisma.NotaUncheckedCreateNestedManyWithoutAlunoInput
 }
 
 export type AlunoUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
   notas?: Prisma.NotaUpdateManyWithoutAlunoNestedInput
 }
 
@@ -263,6 +278,7 @@ export type AlunoUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
   notas?: Prisma.NotaUncheckedUpdateManyWithoutAlunoNestedInput
 }
 
@@ -270,17 +286,20 @@ export type AlunoCreateManyInput = {
   id?: number
   nome: string
   email: string
+  password: string
 }
 
 export type AlunoUpdateManyMutationInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AlunoUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AlunoOrderByRelevanceInput = {
@@ -293,6 +312,7 @@ export type AlunoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  password?: Prisma.SortOrder
 }
 
 export type AlunoAvgOrderByAggregateInput = {
@@ -303,12 +323,14 @@ export type AlunoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  password?: Prisma.SortOrder
 }
 
 export type AlunoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  password?: Prisma.SortOrder
 }
 
 export type AlunoSumOrderByAggregateInput = {
@@ -349,12 +371,14 @@ export type AlunoUpdateOneRequiredWithoutNotasNestedInput = {
 export type AlunoCreateWithoutNotasInput = {
   nome: string
   email: string
+  password: string
 }
 
 export type AlunoUncheckedCreateWithoutNotasInput = {
   id?: number
   nome: string
   email: string
+  password: string
 }
 
 export type AlunoCreateOrConnectWithoutNotasInput = {
@@ -376,12 +400,14 @@ export type AlunoUpdateToOneWithWhereWithoutNotasInput = {
 export type AlunoUpdateWithoutNotasInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AlunoUncheckedUpdateWithoutNotasInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -419,6 +445,7 @@ export type AlunoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   id?: boolean
   nome?: boolean
   email?: boolean
+  password?: boolean
   notas?: boolean | Prisma.Aluno$notasArgs<ExtArgs>
   _count?: boolean | Prisma.AlunoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aluno"]>
@@ -429,9 +456,10 @@ export type AlunoSelectScalar = {
   id?: boolean
   nome?: boolean
   email?: boolean
+  password?: boolean
 }
 
-export type AlunoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "email", ExtArgs["result"]["aluno"]>
+export type AlunoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "email" | "password", ExtArgs["result"]["aluno"]>
 export type AlunoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   notas?: boolean | Prisma.Aluno$notasArgs<ExtArgs>
   _count?: boolean | Prisma.AlunoCountOutputTypeDefaultArgs<ExtArgs>
@@ -446,6 +474,7 @@ export type $AlunoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     id: number
     nome: string
     email: string
+    password: string
   }, ExtArgs["result"]["aluno"]>
   composites: {}
 }
@@ -819,6 +848,7 @@ export interface AlunoFieldRefs {
   readonly id: Prisma.FieldRef<"Aluno", 'Int'>
   readonly nome: Prisma.FieldRef<"Aluno", 'String'>
   readonly email: Prisma.FieldRef<"Aluno", 'String'>
+  readonly password: Prisma.FieldRef<"Aluno", 'String'>
 }
     
 
