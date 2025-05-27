@@ -1,40 +1,67 @@
-const Aluno = require("../models/student");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 const emailSender = require("../utils/email");
 
-let alunos = [];
-
-const cadastrarAluno = (nome, email) => {
-  const id = alunos.length + 1;
-  const aluno = new Aluno(id, nome, email);
-  alunos.push(aluno);
-  return aluno;
+const cadastrarAluno = async (nome, email, password) => {
+  return await prisma.aluno.create({
+    data: { nome, email, password },
+  });
 };
 
-const consultarNotas = (id) => {
-  const aluno = alunos.find((a) => a.id === id);
+const consultarNotas = async (id) => {
+  const aluno = await prisma.aluno.findUnique({
+    where: { id },
+    include: { notas: true },
+  });
   return aluno ? aluno.notas : null;
 };
 
-const lancarNota = (id, nota) => {
-  const aluno = alunos.find((a) => a.id === id);
+const lancarNota = async (alunoId, disciplinaId, professorId, valor) => {
+  const aluno = await prisma.aluno.findUnique({ where: { id: alunoId } });
   if (!aluno) return null;
-  aluno.notas.push(nota);
-  return aluno;
+
+  const nota = await prisma.nota.create({
+    data: {
+      valor,
+      alunoId,
+      disciplinaId,
+      professorId,
+    },
+  });
+
+  return nota;
 };
 
-const gerarBoletim = (id) => {
-  const aluno = alunos.find((a) => a.id === id);
+const gerarBoletim = async (id) => {
+  const aluno = await prisma.aluno.findUnique({
+    where: { id },
+    include: {
+      notas: {
+        include: { disciplina: true },
+      },
+    },
+  });
+
   if (!aluno) return null;
+
+  const media =
+    aluno.notas.reduce((acc, n) => acc + n.valor, 0) /
+    (aluno.notas.length || 1);
+
   return {
     nome: aluno.nome,
-    notas: aluno.notas,
-    media: aluno.notas.reduce((a, b) => a + b, 0) / (aluno.notas.length || 1),
+    notas: aluno.notas.map((n) => ({
+      disciplina: n.disciplina.nome,
+      valor: n.valor,
+    })),
+    media,
   };
 };
 
 const enviarEmailParaAluno = async (id, assunto, mensagem) => {
-  const aluno = alunos.find((a) => a.id === id);
+  const aluno = await prisma.aluno.findUnique({ where: { id } });
   if (!aluno) return null;
+
   return await emailSender.sendEmail(aluno.email, assunto, mensagem);
 };
 
