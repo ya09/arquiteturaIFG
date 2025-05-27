@@ -1,4 +1,4 @@
-const adminService = require("../services/adminService");
+const adminService = require("../services/adm");
 
 const cadastrarDisciplina = async (req, res) => {
   const { nome } = req.body;

@@ -1,12 +1,9 @@
 const express = require("express");
 const app = express();
 
-const teacherRoutes = require("./routes/teacherRoutes");
-const adminRoutes = require("./routes/adminRoutes");
+const adminRoutes = require("./src/routes/adm");
 
 app.use(express.json());
-
-app.use("/api", teacherRoutes);
 
 app.use("/api", adminRoutes);
 
