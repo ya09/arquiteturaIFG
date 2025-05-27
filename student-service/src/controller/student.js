@@ -1,41 +1,69 @@
 const alunoService = require("../services/student");
 
-const cadastrarAluno = (req, res) => {
-  const { nome, email } = req.body;
-  const aluno = alunoService.cadastrarAluno(nome, email);
-  res.status(201).json(aluno);
+const cadastrarAluno = async (req, res) => {
+  const { nome, email, password } = req.body;
+  try {
+    const aluno = await alunoService.cadastrarAluno(nome, email, password);
+    res.status(201).json(aluno);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 };
 
-const consultarNotas = (req, res) => {
+const consultarNotas = async (req, res) => {
   const id = parseInt(req.params.id);
-  const notas = alunoService.consultarNotas(id);
-  if (!notas) return res.status(404).send("Aluno não encontrado");
-  res.json(notas);
+  try {
+    const notas = await alunoService.consultarNotas(id);
+    if (!notas) return res.status(404).send("Aluno não encontrado");
+    res.json(notas);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
-const lancarNota = (req, res) => {
-  const id = parseInt(req.params.id);
-  const { nota } = req.body;
-  const aluno = alunoService.lancarNota(id, nota);
-  if (!aluno) return res.status(404).send("Aluno não encontrado");
-  res.json(aluno);
+const lancarNota = async (req, res) => {
+  const alunoId = parseInt(req.params.id);
+  const { disciplinaId, professorId, valor } = req.body;
+
+  try {
+    const nota = await alunoService.lancarNota(
+      alunoId,
+      disciplinaId,
+      professorId,
+      valor
+    );
+    if (!nota) return res.status(404).send("Aluno não encontrado");
+    res.json(nota);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
-const gerarBoletim = (req, res) => {
+const gerarBoletim = async (req, res) => {
   const id = parseInt(req.params.id);
-  const boletim = alunoService.gerarBoletim(id);
-  if (!boletim) return res.status(404).send("Aluno não encontrado");
-  res.json(boletim);
+  try {
+    const boletim = await alunoService.gerarBoletim(id);
+    if (!boletim) return res.status(404).send("Aluno não encontrado");
+    res.json(boletim);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 const enviarEmail = async (req, res) => {
   const id = parseInt(req.params.id);
   const { assunto, mensagem } = req.body;
+
   try {
-    await alunoService.enviarEmailParaAluno(id, assunto, mensagem);
+    const result = await alunoService.enviarEmailParaAluno(
+      id,
+      assunto,
+      mensagem
+    );
+    if (!result) return res.status(404).send("Aluno não encontrado");
     res.send("Email enviado com sucesso");
   } catch (err) {
-    res.status(500).send("Erro ao enviar email");
+    res.status(500).json({ error: err.message });
   }
 };
 
