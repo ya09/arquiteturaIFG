@@ -1,0 +1,30 @@
+model Aluno {
+  id      Int     @id @default(autoincrement())
+  nome    String
+  email   String
+  notas   Nota[]
+}
+
+model Professor {
+  id    Int     @id @default(autoincrement())
+  nome  String
+  email String
+  notas Nota[]
+}
+
+model Disciplina {
+  id          Int     @id @default(autoincrement())
+  nome        String
+  professor   Professor? @relation(fields: [professorId], references: [id])
+  professorId Int?
+  notas       Nota[]
+}
+
+model Nota {
+  id           Int     @id @default(autoincrement())
+  valor        Float
+  aluno        Aluno   @relation(fields: [alunoId], references: [id])
+  disciplina   Disciplina @relation(fields: [disciplinaId], references: [id])
+  alunoId      Int
+  disciplinaId Int
+}
